@@ -29,7 +29,9 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
     @IBOutlet var timerDisplayLabel: UILabel!
     
     @IBOutlet var problemCountLabel: UILabel!
-    @IBOutlet var problemTextView: UITextView!
+    @IBOutlet var problemTextLabel: UILabel!
+    
+    @IBOutlet var imgView: UIImageView!
     
     @IBOutlet var answerButtonOne: UIButton!
     @IBOutlet var answerButtonTwo: UIButton!
@@ -116,9 +118,6 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
         //ナビゲーションのデリゲート設定
         self.navigationController?.delegate = self
         self.navigationItem.title = "問題を解く"
-        
-        //テキストフィールドのデリゲート
-        self.problemTextView.delegate = self
         
     }
     
@@ -235,16 +234,12 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
         //ラベルに表示されている値を変更する
         //配列 → 0番目：問題文, 1番目：正解の番号, 2番目：1番目の選択肢, 3番目：2番目の選択肢, 4番目：3番目の選択肢, 5番目：4番目の選択肢
         self.problemCountLabel.text = "第" + String(self.counter + 1) + "問"
-        self.problemTextView.text = targetProblem[0] as! String
+        self.problemTextLabel.text = targetProblem[0] as? String
         
         //正解の単語を入れる場所の確定,0~3
         self.answerSelection = Int(arc4random_uniform(4))
-        print("答え：\(answerSelection)")
     
         //選択肢の正解である場所に答えを入れる
-//        print(options)
-//        print(answerSelection)
-        
         self.options[answerSelection] = targetProblem[1] as! String
         
         //その他の選択肢の作成
@@ -264,10 +259,10 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
         }
                
         //ボタンに選択肢を表示する
-        self.answerButtonOne.setTitle("1." + String(describing: options[0]), for: UIControlState())
-        self.answerButtonTwo.setTitle("2." + String(describing: options[1]), for: UIControlState())
-        self.answerButtonThree.setTitle("3." + String(describing: options[2]), for: UIControlState())
-        self.answerButtonFour.setTitle("4." + String(describing: options[3]), for: UIControlState())
+        self.answerButtonOne.setTitle("1.　" + String(describing: options[0]), for: UIControlState())
+        self.answerButtonTwo.setTitle("2.　" + String(describing: options[1]), for: UIControlState())
+        self.answerButtonThree.setTitle("3.　" + String(describing: options[2]), for: UIControlState())
+        self.answerButtonFour.setTitle("4.　" + String(describing: options[3]), for: UIControlState())
     }
     
     //選択された答えが正しいか誤りかを判定するメソッド
@@ -309,11 +304,11 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
         //let targetAnswer: Int = Int(targetProblem[1] as! String)!
         
         //もし回答の数字とメソッドの引数が同じならば正解数の値に+1する
-        print("押したボタン：\(answer)")
-        print("答えに１足すと・・・：\(answerSelection+1)")
         if answer == answerSelection + 1 {
+            self.showImg(bool: true)
             self.correctProblemNumber += 1
         } else {
+            self.showImg(bool: false)
             incorrectProblem.updateValue(targetProblem[1] as! String, forKey: targetProblem[0] as! String)
         }
         
@@ -338,10 +333,7 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
         
         if self.counter == QuizStruct.dataMaxCount {
             
-            /**
-             *（処理）規定回数まで到達した場合は次の画面へ遷移する
-             */
-            
+            //（処理）規定回数まで到達した場合は次の画面へ遷移する
             //タイマーを破棄する
             self.resetTimer()
             
@@ -357,10 +349,7 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
             
         } else {
             
-            /**
-             *（処理）規定回数に達していない場合はカウントをリセットして次の問題を表示する
-             */
-            
+            //（処理）規定回数に達していない場合はカウントをリセットして次の問題を表示する
             //ボタンを全て活性にする
             self.allAnswerBtnEnabled()
             
@@ -391,6 +380,25 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
             
             //計算結果を入れる変数を初期化
             self.resetGameValues()
+        }
+    }
+    
+    func showImg (bool: Bool){
+        if bool {
+            self.imgView.isHidden = false
+            self.imgView.image = UIImage(named: "circle")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.imgView.isHidden = true
+            }
+            
+        } else {
+            self.imgView.isHidden = false
+            self.imgView.image = UIImage(named: "cross")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.imgView.isHidden = true
+            }
         }
     }
 

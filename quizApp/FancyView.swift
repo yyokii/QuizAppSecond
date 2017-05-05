@@ -11,12 +11,10 @@ import UIKit
 class FancyView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
-        let SHADOW_GRAY: CGFloat = 120.0 / 255.0
-        layer.shadowColor = UIColor(red:SHADOW_GRAY, green: SHADOW_GRAY, blue: SHADOW_GRAY, alpha: 0.6).cgColor
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
         layer.shadowOpacity = 0.5
-        layer.shadowRadius = 0.5
-        layer.shadowOffset = CGSize(width: 1.0, height: 7.0)
-        layer.cornerRadius = 2.0
     }
 
 }

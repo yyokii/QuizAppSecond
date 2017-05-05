@@ -29,10 +29,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.animate(withDuration: 5) {
-            self.circleBar.value = self.exp
-        }
         
+        self.circleBar.value = 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            UIView.animate(withDuration: 2, animations: { 
+                self.circleBar.value = self.exp
+            })
+        }
+    
     }
     
     //クイズ画面に遷移するアクション

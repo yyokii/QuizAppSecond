@@ -19,6 +19,7 @@
 		D3182FAA1EAE3330005598A7 /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3182FA91EAE3330005598A7 /* ScoreController.swift */; };
 		D33659251EB56C0F00F8AD59 /* scoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33659231EB56C0F00F8AD59 /* scoreCell.swift */; };
 		D33659261EB56C0F00F8AD59 /* scoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33659241EB56C0F00F8AD59 /* scoreCell.xib */; };
+		D34CB86F1EBC5A1900F0C1CD /* CustomBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34CB86E1EBC5A1900F0C1CD /* CustomBtn.swift */; };
 		D3E298931EACBBA300BA242F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E298921EACBBA300BA242F /* AppDelegate.swift */; };
 		D3E298951EACBBA300BA242F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E298941EACBBA300BA242F /* ViewController.swift */; };
 		D3E298981EACBBA300BA242F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3E298961EACBBA300BA242F /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 		D3182FA91EAE3330005598A7 /* ScoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
 		D33659231EB56C0F00F8AD59 /* scoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scoreCell.swift; sourceTree = "<group>"; };
 		D33659241EB56C0F00F8AD59 /* scoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = scoreCell.xib; sourceTree = "<group>"; };
+		D34CB86E1EBC5A1900F0C1CD /* CustomBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBtn.swift; sourceTree = "<group>"; };
 		D3E2988F1EACBBA300BA242F /* quizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = quizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E298921EACBBA300BA242F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3E298941EACBBA300BA242F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				D30D84951EB749ED00926575 /* FancyView.swift */,
+				D34CB86E1EBC5A1900F0C1CD /* CustomBtn.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				TargetAttributes = {
 					D3E2988E1EACBBA300BA242F = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 36FDYZWS56;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -290,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D34CB86F1EBC5A1900F0C1CD /* CustomBtn.swift in Sources */,
 				D3182FA51EACF7E2005598A7 /* Extension.swift in Sources */,
 				D30D849B1EBADCB400926575 /* answerCell.swift in Sources */,
 				D3182FA11EACD566005598A7 /* QuizController.swift in Sources */,
@@ -420,7 +425,7 @@
 			baseConfigurationReference = 61CADC2AD8431F051FA46205 /* Pods-quizApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 36FDYZWS56;
 				INFOPLIST_FILE = quizApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyokii.quizApp;
@@ -434,7 +439,7 @@
 			baseConfigurationReference = 2F5801D237D1217C2388EB44 /* Pods-quizApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 36FDYZWS56;
 				INFOPLIST_FILE = quizApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyokii.quizApp;

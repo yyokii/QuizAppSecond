@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,17 +19,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vT-aK-LFa">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iFO-28-25K">
                         <rect key="frame" x="8" y="8" width="304" height="98"/>
+                        <color key="backgroundColor" red="0.7725490196" green="0.79215686269999996" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vT-aK-LFa">
+                        <rect key="frame" x="10" y="10" width="300" height="95"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oa-lM-neZ">
-                                <rect key="frame" x="0.0" y="0.0" width="152" height="98"/>
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="95"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pM6-Kz-8VI">
-                                <rect key="frame" x="152" y="0.0" width="152" height="98"/>
+                                <rect key="frame" x="150" y="0.0" width="150" height="95"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,17 +44,21 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="0vT-aK-LFa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="09J-Rg-rqa"/>
-                    <constraint firstAttribute="trailing" secondItem="0vT-aK-LFa" secondAttribute="trailing" constant="8" id="3A8-q7-6Hh"/>
-                    <constraint firstItem="0vT-aK-LFa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="3OM-h1-pbJ"/>
-                    <constraint firstAttribute="bottom" secondItem="0vT-aK-LFa" secondAttribute="bottom" constant="8" id="XYG-ka-ppb"/>
+                    <constraint firstItem="0vT-aK-LFa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="09J-Rg-rqa"/>
+                    <constraint firstAttribute="trailing" secondItem="0vT-aK-LFa" secondAttribute="trailing" constant="10" id="3A8-q7-6Hh"/>
+                    <constraint firstItem="0vT-aK-LFa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="3OM-h1-pbJ"/>
+                    <constraint firstItem="iFO-28-25K" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="3fA-I2-CE8"/>
+                    <constraint firstAttribute="bottom" secondItem="0vT-aK-LFa" secondAttribute="bottom" constant="10" id="XYG-ka-ppb"/>
+                    <constraint firstItem="iFO-28-25K" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="hjy-Py-FXw"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="iFO-28-25K" secondAttribute="bottom" id="joH-us-BVt"/>
+                    <constraint firstItem="iFO-28-25K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="utP-BO-8b8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="answerLabel" destination="pM6-Kz-8VI" id="PXi-l2-QIG"/>
                 <outlet property="problemLabel" destination="2oa-lM-neZ" id="SFY-MP-x1o"/>
             </connections>
-            <point key="canvasLocation" x="34" y="93.5"/>
+            <point key="canvasLocation" x="12" y="76"/>
         </tableViewCell>
     </objects>
 </document>

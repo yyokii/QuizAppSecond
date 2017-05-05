@@ -40,25 +40,11 @@ enum GraphXLabelList : Int {
     
 }
 
-//日付の相互変換用
-struct ChangeDate {
-    
-    //NSDate → Stringへの変換
-    static func convertNSDateToString (_ date: Date) -> String {
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        let dateString: String = dateFormatter.string(from: date)
-        return dateString
-    }
-}
-
 //テーブルビューに関係する定数
 struct ScoreTableStruct {
     static let cellSectionCount: Int = 1
     static let cellHeight: CGFloat = 100
 }
-
 
 class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
     
@@ -75,14 +61,11 @@ class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSou
     //不正解問題の情報
     var incorrectProblem = Dictionary<String,String>()
 
-    
-    //Outlet接続した部品一覧
     @IBOutlet var resultDisplayLabel: UILabel!
     @IBOutlet var analyticsSegmentControl: UISegmentedControl!
     @IBOutlet var resultHistoryTable: UITableView!
     @IBOutlet var resultGraphView: UIView!
     
-    //画面出現中のタイミングに読み込まれる処理
     override func viewWillAppear(_ animated: Bool) {
         
         //QuizControllerから渡された値を出力
@@ -100,10 +83,6 @@ class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //ナビゲーションのデリゲート設定
-        self.navigationController?.delegate = self
-        self.navigationItem.title = "RESULT"
-        
         //テーブルビューのデリゲート設定
         self.resultHistoryTable.delegate = self
         self.resultHistoryTable.dataSource = self
@@ -120,12 +99,14 @@ class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         for i in 0..<xLabels.count {
             let dataEntry = ChartDataEntry(x: Double(i), y: unitsSold[i])
-            dataEntries.append(dataEntry)
+            dataEntries.insert(dataEntry, at: 0)
+            //dataEntries.append(dataEntry)
         }
+        
         
         //グラフに描画するデータを表示する
         let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "ここ最近の得点グラフ")
-        let lineChartData = LineChartData(dataSet: lineChartDataSet) //???????????直したけどおk？
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
         
         //LineChartViewのインスタンスに値を追加する
         self.lineChartView.data = lineChartData
@@ -151,7 +132,6 @@ class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     //TableViewに関する設定一覧（セクションのセル数）
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return self.scoreArrayForCell.count ////////
         return self.incorrectProblem.count
         
     }
@@ -161,13 +141,7 @@ class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         //Xibファイルを元にデータを作成する
         let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell") as? answerCell
-        
-        //取得したデータを読み込ませる
-//        let scoreData: GameScore = self.scoreArrayForCell[indexPath.row] as! GameScore
-//        cell!.scoreDate.text = ChangeDate.convertNSDateToString(scoreData.createDate as Date)
-//        cell!.scoreAmount.text = "あなたの正解数：" + String(scoreData.correctAmount) + "問正解"
-//        cell!.scoreTime.text = "あなたのかかった時間：" + String(scoreData.timeCount) + "秒"
-        
+
         let problem = Array(incorrectProblem.keys)
         let answer = Array(incorrectProblem.values)
         
@@ -190,26 +164,6 @@ class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func reloadData(){
         self.resultHistoryTable.reloadData()
     }
-
-    //Realmに計算結果データを持ってくるメソッド（履歴一覧に表示するためのもの）、viewWillappreのタイミングで呼ばれる
-//    func fetchHistoryDataFromRealm() {
-//        
-//        //履歴データをフェッチしてTableViewへの一覧表示用のデータを作成
-//        self.scoreArrayForCell.removeAllObjects()
-//        let gameScores = GameScore.fetchAllGameScore()
-//        
-//        if gameScores.count != 0 {
-//            for gameScore in gameScores {
-//                self.scoreArrayForCell.add(gameScore)
-//            }
-//        }
-//        
-//        //テーブルビューをリロード
-//        self.reloadData()
-//        
-//        //セグメントコントロール位置の初期設定
-//        self.analyticsSegmentControl.selectedSegmentIndex = 0 //なんでこれいるん？？
-//    }
     
     //セグメントコントロールで表示するものを切り替える
     @IBAction func changeDataDisplayAction(_ sender: AnyObject) {
