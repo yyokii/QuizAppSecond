@@ -26,17 +26,17 @@ struct QuizStruct {
 
 class QuizController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet var timerDisplayLabel: UILabel!
+    @IBOutlet weak var timerDisplayLabel: UILabel!
     
-    @IBOutlet var problemCountLabel: UILabel!
-    @IBOutlet var problemTextLabel: UILabel!
+    @IBOutlet weak var problemCountLabel: UILabel!
+    @IBOutlet weak var problemTextLabel: UILabel!
     
-    @IBOutlet var imgView: UIImageView!
+    @IBOutlet weak var imgView: UIImageView!
     
-    @IBOutlet var answerButtonOne: UIButton!
-    @IBOutlet var answerButtonTwo: UIButton!
-    @IBOutlet var answerButtonThree: UIButton!
-    @IBOutlet var answerButtonFour: UIButton!
+    @IBOutlet weak var answerButtonOne: UIButton!
+    @IBOutlet weak var answerButtonTwo: UIButton!
+    @IBOutlet weak var answerButtonThree: UIButton!
+    @IBOutlet weak var answerButtonFour: UIButton!
     
     //タイマー関連のメンバ変数
     var pastCounter: Int = 10  //経過時間表示用
@@ -75,12 +75,19 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
     var incProblem:String!
     var reviewAnswer:String!
     
-        
+    //ex
+    var otherOptions: Array<Int> = []
+    var problemCount: Array<Int> = []
+    
+    
+    
     //画面出現中のタイミングに読み込まれる処理
     override func viewWillAppear(_ animated: Bool) {
         
-        //問題配列の取得
-        self.setProblemsFromCSV()
+        //問題配列の取得、最終問題の時は次の問題はセットされない
+        if self.counter != QuizStruct.dataMaxCount{
+            self.setProblemsFromCSV()
+        }
     }
     
     //画面出現しきったタイミングに読み込まれる処理
@@ -232,7 +239,6 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
         let targetProblem: NSArray = self.problemArray[self.counter] as! NSArray
         
         //ラベルに表示されている値を変更する
-        //配列 → 0番目：問題文, 1番目：正解の番号, 2番目：1番目の選択肢, 3番目：2番目の選択肢, 4番目：3番目の選択肢, 5番目：4番目の選択肢
         self.problemCountLabel.text = "第" + String(self.counter + 1) + "問"
         self.problemTextLabel.text = targetProblem[0] as? String
         
@@ -242,22 +248,28 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
         //選択肢の正解である場所に答えを入れる
         self.options[answerSelection] = targetProblem[1] as! String
         
-        //その他の選択肢の作成
+        //その他の選択肢作成
+        for i  in 5..<self.problemArray.count {
+            self.problemCount.append(i)
+        }
+        
+        self.problemCount = problemCount.shuffled()
+        otherOptions.append(problemCount[0])
+        otherOptions.append(problemCount[1])
+        otherOptions.append(problemCount[2])
+        otherOptions.append(problemCount[3])
+            
         for _ in 1...3 {
-            //0~14
-            let e = problemArray.count - 5
-            let a =  arc4random_uniform(UInt32(e)) + 5
             
             for i in 0...3 {
                 if self.options[i] == "a" {
-                    var array:Array<String> = problemArray[Int(a)] as! Array
+                    var array:Array<String> = problemArray[self.otherOptions[i]] as! Array
                     self.options[i] = array[1]
                     break
                 }
             }
-
         }
-               
+        
         //ボタンに選択肢を表示する
         self.answerButtonOne.setTitle("1.　" + String(describing: options[0]), for: UIControlState())
         self.answerButtonTwo.setTitle("2.　" + String(describing: options[1]), for: UIControlState())
@@ -300,8 +312,6 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
         
         //該当の問題の回答番号を取得する
         let targetProblem: NSArray = self.problemArray[self.counter] as! NSArray
-
-        //let targetAnswer: Int = Int(targetProblem[1] as! String)!
         
         //もし回答の数字とメソッドの引数が同じならば正解数の値に+1する
         if answer == answerSelection + 1 {
@@ -315,14 +325,16 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
         //カウンターの値に+1をする
         self.counter += 1
         
-        //選択肢の初期化
+        //初期化
         self.options[0] = "a"
         self.options[1] = "a"
         self.options[2] = "a"
         self.options[3] = "a"
         
-        //答えの場所の初期化
         self.answerSelection = -1
+        
+        problemCount.removeAll()
+        otherOptions.removeAll()
 
         //タイマーを再設定する、reloadTimer内の処理にメソッド:次の遷移先の準備、を含む
         self.reloadTimer()
@@ -388,7 +400,7 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
             self.imgView.isHidden = false
             self.imgView.image = UIImage(named: "circle")
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.imgView.isHidden = true
             }
             
@@ -396,7 +408,7 @@ class QuizController: UIViewController, UITextViewDelegate, UINavigationControll
             self.imgView.isHidden = false
             self.imgView.image = UIImage(named: "cross")
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.imgView.isHidden = true
             }
         }

@@ -2,6 +2,7 @@ PODS:
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
+  - LTMorphingLabel (0.5.0)
   - MBCircularProgressBar (0.3.5)
   - Realm (2.6.2):
     - Realm/Headers (= 2.6.2)
@@ -11,15 +12,17 @@ PODS:
 
 DEPENDENCIES:
   - Charts
+  - LTMorphingLabel
   - MBCircularProgressBar
   - RealmSwift
 
 SPEC CHECKSUMS:
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
+  LTMorphingLabel: bc170be74b219b7dae0e5543a44676d16da70ff7
   MBCircularProgressBar: 0b795b722a5eb5b0923822f90474e2576a1a7855
   Realm: 29222766425b9f831228f81b63f0e38a97a4d700
   RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
 
-PODFILE CHECKSUM: 1601761b7c3d00591073ff41d57bcd18bfcacc2a
+PODFILE CHECKSUM: c61d077c495f1cff46eb54f06a7b8ea5b3f9a4d4
 
 COCOAPODS: 1.2.1

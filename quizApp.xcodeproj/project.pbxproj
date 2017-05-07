@@ -20,6 +20,8 @@
 		D33659251EB56C0F00F8AD59 /* scoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33659231EB56C0F00F8AD59 /* scoreCell.swift */; };
 		D33659261EB56C0F00F8AD59 /* scoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33659241EB56C0F00F8AD59 /* scoreCell.xib */; };
 		D34CB86F1EBC5A1900F0C1CD /* CustomBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34CB86E1EBC5A1900F0C1CD /* CustomBtn.swift */; };
+		D37D51301EBF080D00F2ED8D /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37D512F1EBF080D00F2ED8D /* GoogleMobileAds.framework */; };
+		D37D51321EBF085800F2ED8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D37D51311EBF085800F2ED8D /* GoogleService-Info.plist */; };
 		D3E298931EACBBA300BA242F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E298921EACBBA300BA242F /* AppDelegate.swift */; };
 		D3E298951EACBBA300BA242F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E298941EACBBA300BA242F /* ViewController.swift */; };
 		D3E298981EACBBA300BA242F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3E298961EACBBA300BA242F /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 		D33659231EB56C0F00F8AD59 /* scoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scoreCell.swift; sourceTree = "<group>"; };
 		D33659241EB56C0F00F8AD59 /* scoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = scoreCell.xib; sourceTree = "<group>"; };
 		D34CB86E1EBC5A1900F0C1CD /* CustomBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBtn.swift; sourceTree = "<group>"; };
+		D37D512F1EBF080D00F2ED8D /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		D37D51311EBF085800F2ED8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3E2988F1EACBBA300BA242F /* quizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = quizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E298921EACBBA300BA242F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3E298941EACBBA300BA242F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37D51301EBF080D00F2ED8D /* GoogleMobileAds.framework in Frameworks */,
 				931F037AE453C6433573B4A0 /* Pods_quizApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +138,8 @@
 				D3E298991EACBBA300BA242F /* Assets.xcassets */,
 				D3E2989B1EACBBA300BA242F /* LaunchScreen.storyboard */,
 				D3E2989E1EACBBA300BA242F /* Info.plist */,
+				D37D51311EBF085800F2ED8D /* GoogleService-Info.plist */,
+				D37D512F1EBF080D00F2ED8D /* GoogleMobileAds.framework */,
 			);
 			path = quizApp;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D30D84981EB74FA300926575 /* Pigmo-00.otf in Resources */,
+				D37D51321EBF085800F2ED8D /* GoogleService-Info.plist in Resources */,
 				D3E2989D1EACBBA300BA242F /* LaunchScreen.storyboard in Resources */,
 				D33659261EB56C0F00F8AD59 /* scoreCell.xib in Resources */,
 				D3E2989A1EACBBA300BA242F /* Assets.xcassets in Resources */,
@@ -426,6 +434,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 36FDYZWS56;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/quizApp",
+				);
 				INFOPLIST_FILE = quizApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyokii.quizApp;
@@ -440,6 +452,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 36FDYZWS56;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/quizApp",
+				);
 				INFOPLIST_FILE = quizApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyokii.quizApp;

@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Charts
+import GoogleMobileAds
 
 //グラフに描画する要素数に関するenum
 enum GraphXLabelList : Int {
@@ -46,38 +47,43 @@ struct ScoreTableStruct {
     static let cellHeight: CGFloat = 100
 }
 
-class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
+class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, GADBannerViewDelegate {
     
     //QuizControllerより引き渡される値を格納する
     var correctProblemNumber: Int!
     var totalSeconds: String!
-    
-    //テーブルデータ表示用に一時的にすべてのfetchデータを格納する
-    //var scoreArrayForCell: NSMutableArray = []
     
     //折れ線グラフ用のメンバ変数
     var lineChartView: LineChartView = LineChartView()
     
     //不正解問題の情報
     var incorrectProblem = Dictionary<String,String>()
+    
+    let request = GADRequest()
 
     @IBOutlet var resultDisplayLabel: UILabel!
     @IBOutlet var analyticsSegmentControl: UISegmentedControl!
     @IBOutlet var resultHistoryTable: UITableView!
     @IBOutlet var resultGraphView: UIView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     override func viewWillAppear(_ animated: Bool) {
         
         //QuizControllerから渡された値を出力
         self.resultDisplayLabel.text = "正解数：合計" + String(self.correctProblemNumber) + "問 / 経過時間：" + self.totalSeconds + "秒"
         
-        //Realmから履歴データを呼び出す
-        //self.fetchHistoryDataFromRealm()
-        
         //セグメントコントロールの初期値を設定する
         self.analyticsSegmentControl.selectedSegmentIndex = 0
         self.resultHistoryTable.alpha = 1
         self.resultGraphView.alpha = 0 //??????????
+        
+        //バナー
+        request.testDevices = [kGADSimulatorID]
+        bannerView.delegate = self
+        bannerView.adUnitID = "ca-app-pub-4085942479921327/8982410297"
+        bannerView.rootViewController = self
+        bannerView.load(request)
+        
     }
     
     override func viewDidLoad() {
@@ -99,14 +105,23 @@ class ScoreController: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         for i in 0..<xLabels.count {
             let dataEntry = ChartDataEntry(x: Double(i), y: unitsSold[i])
-            dataEntries.insert(dataEntry, at: 0)
-            //dataEntries.append(dataEntry)
+            dataEntries.append(dataEntry)
         }
         
         
         //グラフに描画するデータを表示する
         let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "ここ最近の得点グラフ")
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        
+        
+        let months = ["NOW", "1つ前", "2つ前", "3つ前", "4つ前", ""]
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:months)
+        
+        lineChartView.setScaleMinima(0, scaleY: 0)
+        lineChartView.xAxis.granularity = 1
+        lineChartView.xAxis.axisMaximum = 5
+        
+        lineChartView.xAxis.labelPosition = .bottom
         
         //LineChartViewのインスタンスに値を追加する
         self.lineChartView.data = lineChartData

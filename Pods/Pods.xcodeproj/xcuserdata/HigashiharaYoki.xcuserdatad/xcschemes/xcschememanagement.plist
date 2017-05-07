@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>LTMorphingLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBCircularProgressBar-MBCircularProgressBar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +42,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>069AFB3B75305718C167B049EB9B3F14</key>
+		<key>4C69BF3EF4CE81852226B9442B0C2DF4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F9154BB02B1D14004B1F37F56B5EA6C</key>
+		<key>59CA163B034E0CF81980A8EC685E17C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9572C0C5C6F3AEA441B8BB2360B12AFB</key>
+		<key>89C8EDC1A940AB749484B54F671719C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C14AE5A811C58DCED13B0D1C675CDD73</key>
 		<dict>
 			<key>primary</key>
 			<true/>

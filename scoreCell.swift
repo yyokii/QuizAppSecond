@@ -11,9 +11,9 @@ import UIKit
 class scoreCell: UITableViewCell {
     
     //スコア履歴用セルのタイトル・文言
-    @IBOutlet var scoreDate: UILabel!
-    @IBOutlet var scoreAmount: UILabel!
-    @IBOutlet var scoreTime: UILabel!
+    @IBOutlet weak var scoreDate: UILabel!
+    @IBOutlet weak var scoreAmount: UILabel!
+    @IBOutlet weak var scoreTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

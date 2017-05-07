@@ -7,7 +7,8 @@ target 'quizApp' do
 
   pod 'RealmSwift’
   pod 'Charts' 
-  pod "MBCircularProgressBar"
+  pod 'MBCircularProgressBar'
+  pod 'LTMorphingLabel'
 
   # Pods for quizApp
 

@@ -53,19 +53,6 @@ class GameScore: Object {
         }
     }
     
-    //
-    static func fetchExp() -> (CGFloat, Int) {
-        var totalCorrect: Int = 0
-        let gameScores: Results<GameScore> = realm.objects(GameScore.self)
-        for gameScore in gameScores {
-            totalCorrect += gameScore.correctAmount
-        }
-        let exp = totalCorrect % 5 * 20
-        let  level = floor(Double(totalCorrect/5))
-        
-        return (CGFloat(exp),Int(level))
-    }
-    
     //登録日順のデータの全件取得をする
     static func fetchAllGameScore() -> [GameScore] {
         let gameScores: Results<GameScore> = realm.objects(GameScore.self).sorted(byKeyPath: "createDate", ascending: false)
@@ -88,4 +75,31 @@ class GameScore: Object {
         }
         return gameScoreList
     }
+    
+    //経験値とレベルについて
+    static func fetchExp() -> (CGFloat, Int) {
+        var totalCorrect: Int = 0
+        let gameScores: Results<GameScore> = realm.objects(GameScore.self)
+        for gameScore in gameScores {
+            totalCorrect += gameScore.correctAmount
+        }
+        let exp = totalCorrect % 5 * 20
+        let  level = floor(Double(totalCorrect/5))
+        
+        return (CGFloat(exp),Int(level))
+    }
+    
+    //正解率
+    static func ratio () -> Double {
+        var totalCorrect: Int = 0
+        let gameScores: Results<GameScore> = realm.objects(GameScore.self)
+        for gameScore in gameScores {
+            totalCorrect += gameScore.correctAmount
+        }
+        var ratio:Double =  Double(totalCorrect)/Double(gameScores.count * 5) * 1000
+        ratio = round(ratio)/10
+        
+        return ratio
+    }
+    
 }
