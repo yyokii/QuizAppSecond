@@ -446,6 +446,7 @@
 				PROVISIONING_PROFILE = "02d028d4-bc05-4ce5-b8d7-3b5cfbe69c58";
 				PROVISIONING_PROFILE_SPECIFIER = enQuiz_dist;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -467,6 +468,7 @@
 				PROVISIONING_PROFILE = "02d028d4-bc05-4ce5-b8d7-3b5cfbe69c58";
 				PROVISIONING_PROFILE_SPECIFIER = enQuiz_dist;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
